@@ -78,6 +78,8 @@ class Binary:
         return  res
 
 
+
+
 Binary = Binary()
 
 arr = [1,2,3,4,5]
