@@ -24,7 +24,7 @@ class LinkedList:
         if not self.head:
             print("The Linked list is empty..")
         current = self.head
-        while current.next:
+        while current:
             if current.data == target:
                 print('found')
                 return
@@ -65,6 +65,6 @@ lk.insert_at_the_end(13)
 lk.insert_at_the_end(23)
 lk.insert_at_the_end(89)
 lk.insert_at_the_end(34)
-lk.delete(12)
-lk.search(2)
+# lk.delete(12)
+lk.search(89)
 lk.display()

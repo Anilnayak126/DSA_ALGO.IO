@@ -141,7 +141,7 @@ def cocktail_shaker_sort(arr):
                 swapped = True        # Mark that a swap occurred
 
         if not swapped:      # If no swaps, array is already sorted
-            break            # Exit the loop
+            break              # Exit the loop
 
         swapped = False      # Reset swapped for the backward pass
         end -= 1             # Reduce the range for the next forward pass
@@ -155,4 +155,6 @@ def cocktail_shaker_sort(arr):
         start += 1           # Increase the range for the next backward pass
 
     return arr
+
+
 
