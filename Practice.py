@@ -1,51 +1,40 @@
 class Node:
-    def __init__(self, data):
+    def __init__(self,data):
         self.data = data
         self.next = None
         self.prev = None
 
-
-class DoublyLinkedList:
+class DoublylinkedList:
     def __init__(self):
         self.head = None
 
-    def insert_at_end(self, data):
+
+    def insert_at_the_end(self,data):
         new_node = Node(data)
-        if self.head is None:
+        if not self.head:
             self.head = new_node
             return
 
-        last = self.head
-        while last.next:
-            last = last.next
-        last.next = new_node
-        new_node.prev = last
-
-    def insert_at_beginning(self, data):
-        new_node = Node(data)
-        new_node.next = self.head
-        if self.head is not None:
-            self.head.prev = new_node
-        self.head = new_node
+        temp = self.head
+        while temp.next:
+            temp= temp.next
+        temp.next = new_node
+        new_node.prev = temp
 
     def display(self):
-        if self.head is None:
-            print("Linked List is empty ..")
+        if not self.head:
+            print("there is no data in Linkedlist..")
             return
-
         temp = self.head
         while temp:
-            prev_data = temp.prev.data if temp.prev else "None"
-            next_data = temp.next.data if temp.next else "None"
-            print(f"{prev_data} <--P| {temp.data} |N--> {next_data}", end=" <--> ")
+            print(temp.data,end="<-->")
             temp = temp.next
         print("None")
 
-
-# Testing the doubly linked list
-dll = DoublyLinkedList()
-dll.insert_at_end(12)
-dll.insert_at_end(34)
-dll.insert_at_end(45)
-dll.insert_at_beginning(23)
+dll = DoublylinkedList()
+dll.insert_at_the_end(12)
+dll.insert_at_the_end(45)
+dll.insert_at_the_end(56)
 dll.display()
+
+

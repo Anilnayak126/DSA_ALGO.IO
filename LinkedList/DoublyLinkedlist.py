@@ -3,69 +3,90 @@ class Node:
         self.data = data
         self.next = None
         self.prev = None
-class DoublyLinkedList:
+
+class DoubleLinkedList:
     def __init__(self):
         self.head = None
 
-
-
     def insert_at_the_end(self,data):
         new_node = Node(data)
-        if not self.head:
+        if self.head is None:
             self.head = new_node
             return
-        last = self.head
-
-        while last.next:
-            last = last.next
-        last.next = new_node
-        new_node.prev = last
-
-    def len(self):
-        count = 0
-        if self.head is None:
-            return "Linked list is empty"
         temp = self.head
-        while temp:
-            count += 1
+        while temp.next is not None:
             temp = temp.next
-        return count
+        temp.next = new_node
+        new_node.prev = temp
 
-    def search(self,target):
-        if self.head is None:
-            return False
-        temp = self.head
-        while temp:
-            if temp.data == target:
-                return True
-            temp = temp.next
-        return False
 
     def insert_at_beginning(self,data):
-        new_node = Node(data)
-        new_node.next = self.head
-        self.head.prev = new_node
+        new_node =Node(data)
+        temp = self.head
+        temp.prev = new_node
+        new_node.next = temp
         self.head = new_node
 
-    def display(self):
-        if not self.head:
-            print("linked list is empty ..")
-        current = self.head
+    def insert_at_position(self,data,pos):
+        new_node = Node(data)
+        temp = self.head
 
-        while current:
-            print(current.data, end="-->")
-            current = current.next
+        for i in range(pos - 1):
+            temp = temp.next
+        new_node.prev = temp
+        new_node.next = temp.next
+        temp.next.prev = new_node
+        temp.next = new_node
+    def delete_at_beginning(self):
+        temp = self.head
+        self.head = temp.next
+        temp.next = None
+        self.head.prev = None
+
+    def delete_at_end(self):
+        if self.head is None:
+            print("The Linked list is empty..")
+            return
+        temp = self.head.next
+        prev = self.head
+
+        while temp.next:
+            temp = temp.next
+            prev = prev.next
+        prev.next = None
+        temp.prev = None
+    def delete_at_position(self,pos):
+        if self.head is None:
+            print("Linked list is empty..")
+        temp =  self.head.next
+        before = self.head
+
+        for i in range(pos - 1):
+            temp =temp.next
+            before = before.next
+
+        before.next = temp.next
+        temp.next.prev = before
+        temp.prev = None
+        temp.next = None
+
+    def display(self):
+        if self.head is None:
+            print("There is Nothing..")
+            return
+        temp = self.head
+        while temp:
+            print(temp.data,end="-->")
+            temp = temp.next
         print("None")
 
-
-dll = DoublyLinkedList()
-
-dll.insert_at_the_end(12)
-dll.insert_at_the_end(34)
+dll = DoubleLinkedList()
 dll.insert_at_the_end(23)
+dll.insert_at_the_end(34)
 dll.insert_at_the_end(78)
-dll.insert_at_beginning(23)
-dll.insert_at_beginning(5)
-print(dll.search(12))
-print(dll.len())
+dll.insert_at_beginning(12)
+dll.insert_at_position(45,2)
+dll.delete_at_beginning()
+# dll.delete_at_end()
+dll.delete_at_position(2)
 dll.display()
