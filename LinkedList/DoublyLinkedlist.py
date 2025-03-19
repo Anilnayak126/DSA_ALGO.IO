@@ -55,6 +55,7 @@ class DoubleLinkedList:
             prev = prev.next
         prev.next = None
         temp.prev = None
+
     def delete_at_position(self,pos):
         if self.head is None:
             print("Linked list is empty..")
@@ -79,6 +80,7 @@ class DoubleLinkedList:
             print(temp.data,end="-->")
             temp = temp.next
         print("None")
+
 
 dll = DoubleLinkedList()
 dll.insert_at_the_end(23)
