@@ -2,95 +2,48 @@ class Node:
     def __init__(self,data):
         self.data = data
         self.next = None
-        self.prev = None
 
-class DoublelinkedList:
+
+class Queue:
     def __init__(self):
-        self.head = None
+        self.front = None
+        self.rear = None
 
-    def insert_at_end(self,data):
+    def append(self,data):
         new_node = Node(data)
-        if self.head  is None:
-            self.head = new_node
+        if self.front is None:
+            self.front = new_node
+            self.rear = new_node
             return
-        temp = self.head
+        temp = self.front
         while temp.next:
             temp = temp.next
-        temp.next = new_node
-        new_node.prev = temp
-    def insert_at_beginning(self,data):
-        new_node = Node(data)
-        if self.head is None:
-            self.head = new_node
+        self.rear.next = new_node
+        self.rear = new_node
+    def pop(self):
+        if self.front is None:
+            print("Queue is Empty..")
             return
-
-        new_node.next = self.head
-        self.head = new_node
-    def insert_at_pos(self,data,pos):
-        new_node = Node(data)
-        if self.head is None:
-            self.head = new_node
-            return
-        temp = self.head
-
-        for i in range(pos -1):
-            temp = temp.next
-        new_node.next = temp.next
-        new_node.prev = temp
-        temp.next.prev = new_node
-        temp.next = new_node
-    def delete_at_end(self):
-        if self.head is None:
-            print("Linked List is empty.")
-            return
-        temp = self.head
-        while temp.next:
-            temp =temp.next
-        temp.prev.next = None
-        temp.prev = None
-    def delete_at_beginning(self):
-        if self.head is None:
-            print("Linked List is empty..")
-            return
-        temp = self.head
-        self.head = temp.next
-        temp.next.prev = None
+        temp = self.front
+        self.front = temp.next
         temp.next = None
-    def delete_at_pos(self,pos):
-        if self.head is None:
-            print("Linked List is Empty..")
-            return
-        temp = self.head.next
-        prev = self.head
-        for i in range(pos -1):
-            temp = temp.next
-            prev = prev.next
-        prev.next = temp.next
-        temp.next.prev = prev
-        temp.next = None
-        temp.prev= None
-
-
-
 
     def display(self):
-        if self.head is None:
-            print("Linked List is None..")
+        if self.front is None:
+            print('Queue is Empty..')
             return
-        temp = self.head
+        temp = self.front
         while temp:
-            print(temp.data,end='-->')
-            temp =temp.next
+            print(temp.data,end="-->")
+            temp = temp.next
         print("None")
 
-l = DoublelinkedList()
-l.insert_at_end(12)
-l.insert_at_end(45)
-l.insert_at_end(56)
-l.insert_at_beginning(23)
-l.insert_at_pos(34,2)
-# l.delete_at_end()
-# l.delete_at_beginning()
-# l.delete_at_pos(2)
 
-l.display()
+
+q = Queue()
+q.append(23)
+q.append(45)
+q.append(27)
+
+q.pop()
+q.display()
